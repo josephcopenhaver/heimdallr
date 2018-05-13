@@ -29,7 +29,7 @@ const Browser = async(cb) => {
       actions.push((async() =>{
         let page = await browser.newPage()
         try {
-          await page.goto('https://www.google.com/', {waitUntil: ['load', 'networkidle2']})
+          await page.goto('https://www.google.com/', {waitUntil: ['load', 'networkidle2']}) // other options: domcontentloaded, networkidle0 ; https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagegotourl-options
           console.log("got page")
         }
         finally {
