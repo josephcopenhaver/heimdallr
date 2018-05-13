@@ -1,0 +1,12 @@
+{
+  "name": "heimdallr",
+  "version": "0.1.0",
+  "description": "An extensible site monitoring utility.",
+  "main": "index.js",
+  "repository": "https://github.com/josephcopenhaver/heimdallr.git",
+  "license": "MIT",
+  "author": "Joseph Copenhaver",
+  "dependencies": {
+    "puppeteer": "^1.4.0"
+  }
+}

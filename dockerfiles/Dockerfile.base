@@ -1,0 +1,33 @@
+FROM node:9.11.1-slim
+
+# install curl
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
+    apt-get install -y \
+        apt-transport-https \
+        curl
+
+# install chrome repo key and repo
+RUN curl -sSL https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
+    echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list
+
+ARG CHROME_VERSION=66.0.3359.170-1
+
+# install chrome
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
+    set -x && \
+    apt-get install -y \
+        google-chrome-stable$( test -z "$CHROME_VERSION" || printf "=%s" "$CHROME_VERSION")
+
+# test chrome install
+RUN google-chrome --version
+
+# install make
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    apt-get update && \
+    apt-get install -y make
+
+RUN mkdir -p /opt/service
+
+WORKDIR /opt/service
